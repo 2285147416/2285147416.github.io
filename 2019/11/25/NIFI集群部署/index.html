@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NIFI集群部署 | zyh的专属博客</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="NIFI集群部署 | zyh的专属博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="NIFI版本：1.6.0部署路径: &#x2F;opt&#x2F;lab&#x2F;nifi-1.6.0 集群架构如下： 概念：协调节点：coordinator node, 所有节点往该节点发送心跳信息主节点：primary node, 主要用于跑一些独立流程独立流程：isolated processors, 有些流程需要独立跑，不要在集群中运行，例如getsftp流程，该流程需要从FTP服务器上获取文件信息，如果多个流程同时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NIFI集群部署">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;25&#x2F;NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2&#x2F;index.html">
+<meta property="og:site_name" content="zyh的专属博客">
+<meta property="og:description" content="NIFI版本：1.6.0部署路径: &#x2F;opt&#x2F;lab&#x2F;nifi-1.6.0 集群架构如下： 概念：协调节点：coordinator node, 所有节点往该节点发送心跳信息主节点：primary node, 主要用于跑一些独立流程独立流程：isolated processors, 有些流程需要独立跑，不要在集群中运行，例如getsftp流程，该流程需要从FTP服务器上获取文件信息，如果多个流程同时">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-25T08:14:34.471Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(3)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="3">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/11/25/NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="NIFI集群部署">NIFI集群部署</span>
+            <span class="post-date" title="2019-11-25 16:08:25">2019/11/25</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="我的第一篇博客文章">我的第一篇博客文章</span>
+            <span class="post-date" title="2019-11-25 15:49:35">2019/11/25</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/25/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2019-11-25 14:10:31">2019/11/25</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-NIFI集群部署" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">NIFI集群部署</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-25 16:14:34'>2019-11-25 16:08</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NIFI版本：1-6-0"><span class="toc-text">NIFI版本：1.6.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概念："><span class="toc-text">概念：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STEP-ONE-软件包准备"><span class="toc-text">STEP ONE 软件包准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集群状态管理"><span class="toc-text">集群状态管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。"><span class="toc-text">修改$NIFI_HOME/conf/state-management.xml文件，找到并且id为zk-provider的标签。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集群节点属性配置"><span class="toc-text">集群节点属性配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看集群情况，右上角菜单，点开，点击菜单“Cluster”"><span class="toc-text">查看集群情况，右上角菜单，点开，点击菜单“Cluster”:</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NIFI版本：1-6-0"><a href="#NIFI版本：1-6-0" class="headerlink" title="NIFI版本：1.6.0"></a>NIFI版本：1.6.0</h1><p>部署路径: /opt/lab/nifi-1.6.0</p>
+<p>集群架构如下：</p>
+<h1 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h1><p>协调节点：coordinator node, 所有节点往该节点发送心跳信息<br>主节点：primary node, 主要用于跑一些独立流程<br>独立流程：isolated processors, 有些流程需要独立跑，不要在集群中运行，例如getsftp流程，该流程需要从FTP服务器上获取文件信息，如果多个流程同时运行则会影响文件的获取一致性。</p>
+<h1 id="STEP-ONE-软件包准备"><a href="#STEP-ONE-软件包准备" class="headerlink" title="STEP ONE 软件包准备"></a>STEP ONE 软件包准备</h1><p>NIFI 1.6.0  软件包大小：1.18GB</p>
+<p>STEP TWO 操作系统配置<br>最佳实践配置，详细可参考官网：<br><a href="http://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#configuration-best-practices" target="_blank" rel="noopener">http://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#configuration-best-practices</a></p>
+<p>STEP THREE  NIFI配置<br>修改NIFI JVM内存：修改${NIFI_HOME}/conf/bootstrap.conf文件，根据服务器的内存大小适当调整JVM内存大小，如果允许配置该内存大小为32g.</p>
+<p>STEP FOUR 华为大数据平台对接<br>登陆华为大数据平台，进入系统设置-》配置-》用户管理=》添加用户，如下图所示：注意，用户类型选择“机机”。  关于用户的配置和原理请参考华为大数据平台文档《FusionInsight HD V100R002C60U1004.chm》。</p>
+<p>下载用户秘钥信息，并将秘钥文件解压到安装NIFI的服务器上指定路径下${NIFI_HOME}/krb</p>
+<p>配置NIFI，修改${NIFI_HOME}/conf/nifi.properties文件。</p>
+<p>配置NIF启动参数，使得可以连接zookeeper<br>在${NIFI_HOME}/conf目录下创建jaas.conf文本内容如下：</p>
+<p>修改${NIFI_HOME}/conf/bootstrap.conf文件</p>
+<p>确认NIFI中的zookekper包版本，查看华为大数据平台本身应用的zookeeper版本，如果不一致，则将华为大数据平台使用的zookeeper jar包覆盖nifi中的所有zookeeper jar包。</p>
+<p>STEP FIVE 集群配置<br>当前示例部署nifi集群，集群节点数为3个，其主机名分别为dn1,dn2,dn3。下面我们以dn1服务节点上nifi配置为例，其他节点与之一致，只是涉及到主机名称的需要同步修改。<br>我们定义nifi安装包根目录地址为$NIFI_HOME。例如当前dn1节点中<br>$NIFI_HOME=/opt/lab/nifi-1.6.0<br>Zookeeper服务集群配置<br>Nifi集群的协调配置管理需要第三方协调配置服务，即zookeeper集群。 可以使用环境中已经搭建好的zookeeper服务，NIFI本身也集成了zookeeper服务，我们采用NIFI自身启动的Zookeeper。三个NIFI节点集群，同时也相应搭建三个节点的Zookeeper服务集群。为此需要修改一下配置：<br>修改$NIFI_HOME/conf/nifi.properties<br>nifi.state.management.embedded.zookeeper.start=true  //启用nifi中的zookeeper服务<br>nifi.state.management.embedded.zookeeper.properties=./conf/zookeeper.properties //zookeeperf服务集群配置信息，即集群的配置在zookeeper.properties中定义</p>
+<p>修改$NIFI_HOME/conf/zookeeper.properties,配置如下</p>
+<p>配置zookeeper数据存储目录，如上图中可以看到zookeeper服务节点数据存储目录是./state/zookeeper<br>执行以下命令：<br>cd $NIFI_HOME      进入nifi根目录<br>mkdir state          创建state目录<br>mkdir state/zookeeper   创建zookeeper目录<br>echo 1 &gt; state/zookeeper/myid    在zookeeper目录下创建文本myid并写入1.</p>
+<p>注意： 最后一步，我们在dn1节点上写入1，在dn2节点上写入2，在dn3节点上写入3，正好对应了zookeeper.properties中的server.1,server.2,server.3的命名配置。</p>
+<h1 id="集群状态管理"><a href="#集群状态管理" class="headerlink" title="集群状态管理"></a>集群状态管理</h1><p>我们知道nifi中所有数据流的处理会涉及到状态保存，例如从FTP取文件，会保存文件的最新时间，以便于下次取数据的时候取最新时间下的文件信息。默认单点情况下数据流的状态都保存在服务节点本地，但是在启用集群后，需要将这些状态信息保存在第三方公共服务区，这样以便集群中所有服务节点可以获取到并且同步状态信息。而这个第三方服务一般是采用zookeeper进行管理。为此需要实现以下几点配置：<br>nifi.state.management.configuration.file=./conf/state-management.xml   状态管理配置文件 采用默认即可<br>nifi.state.management.provide.cluster=zk-provider   状态管理采用zk-provider方式</p>
+<h1 id="修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。"><a href="#修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。" class="headerlink" title="修改$NIFI_HOME/conf/state-management.xml文件，找到并且id为zk-provider的标签。"></a>修改$NIFI_HOME/conf/state-management.xml文件，找到<cluster-provider>并且id为zk-provider的标签。</h1><p>修改Connect String 为  dn1:2181,dn2:2181,dn3:2181<br>修改Root Node 为  /nifi</p>
+<h1 id="集群节点属性配置"><a href="#集群节点属性配置" class="headerlink" title="集群节点属性配置"></a>集群节点属性配置</h1><p>修$NIFI_HOME/conf/nifi.properties中以下配置：</p>
+<p>nifi.cluster.is.node=true<br>nifi.cluster.node.address=dn1<br>nifi.zookeeper.connect.string=dn1:2181,dn2:2181,dn3:2181<br>nifi.zookeeper.root.node=/nifi<br>nifi.remote.input.host=dn3<br>nifi.remote.input.socket.port=9998<br>Nifi.web.http.host=dn3</p>
+<p>STEP SIX 启动各个节点<br>在各个服务节点上，进入$NIFI_HOME目录，执行bin/nifi.sh start进行各个节点启动。<br>访问任意节点(以dn1节点为例): <a href="http://dn1:8080/nifi" target="_blank" rel="noopener">http://dn1:8080/nifi</a></p>
+<h1 id="查看集群情况，右上角菜单，点开，点击菜单“Cluster”"><a href="#查看集群情况，右上角菜单，点开，点击菜单“Cluster”" class="headerlink" title="查看集群情况，右上角菜单，点开，点击菜单“Cluster”:"></a>查看集群情况，右上角菜单，点开，点击菜单“Cluster”:</h1>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>NIFI集群部署</p>
+    
+    <p><span class="copy-title">本文作者:</span><a  title="John Doe">John Doe</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-25, 16:08:25</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-25, 16:14:34</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/25/NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/" title="NIFI集群部署">http://yoursite.com/2019/11/25/NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': [],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
