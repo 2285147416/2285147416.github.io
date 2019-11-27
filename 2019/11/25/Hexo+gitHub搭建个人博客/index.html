@@ -127,7 +127,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    <li><div class="all active">全部文章<small>(6)</small></div></li>
     
         
             
@@ -147,7 +147,7 @@
     
         
             
-            <li><div data-rel="NIFI">NIFI<small>(1)</small></div>
+            <li><div data-rel="NIFI">NIFI<small>(2)</small></div>
                 
             </li>
             
@@ -176,7 +176,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -228,6 +228,10 @@
     
     <li class="article-tag-list-item">
         <a class="color5">NIFI</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">HDFS</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -289,19 +293,19 @@
         </a>
         
         <a  class="NIFI "
+           href="/2019/11/27/NIFI%E8%BF%9E%E6%8E%A5HDFS/"
+           data-tag="NIFI,HDFS"
+           data-author="" >
+            <span class="post-title" title="NIFI连接HDFS">NIFI连接HDFS</span>
+            <span class="post-date" title="2019-11-27 15:23:32">2019/11/27</span>
+        </a>
+        
+        <a  class="NIFI "
            href="/2019/11/25/NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"
            data-tag="NIFI,NIFI集群部署文档,ETL工具"
            data-author="" >
             <span class="post-title" title="NIFI集群部署">NIFI集群部署</span>
             <span class="post-date" title="2019-11-25 16:08:25">2019/11/25</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2019/11/26/%E5%90%84%E7%9C%81%E5%B8%82%E5%8C%BA%E5%9F%9F%E8%A1%8C%E6%94%BF%E7%BC%96%E7%A0%81/"
-           data-tag="区域行政编码,各省市行政编码,编码"
-           data-author="" >
-            <span class="post-title" title="各省市区域行政编码">各省市区域行政编码</span>
-            <span class="post-date" title="2019-11-26 16:49:44">2019/11/26</span>
         </a>
         
         <a  class="大数据 "
@@ -310,6 +314,14 @@
            data-author="" >
             <span class="post-title" title="大数据可视化平台">大数据可视化平台</span>
             <span class="post-date" title="2019-11-27 09:05:34">2019/11/27</span>
+        </a>
+        
+        <a  class="工具 "
+           href="/2019/11/26/%E5%90%84%E7%9C%81%E5%B8%82%E5%8C%BA%E5%9F%9F%E8%A1%8C%E6%94%BF%E7%BC%96%E7%A0%81/"
+           data-tag="区域行政编码,各省市行政编码,编码"
+           data-author="" >
+            <span class="post-title" title="各省市区域行政编码">各省市区域行政编码</span>
+            <span class="post-date" title="2019-11-26 16:49:44">2019/11/26</span>
         </a>
         
     </nav>
@@ -352,7 +364,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-26 15:26:42'>2019-11-25 15:49</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-27 17:15:42'>2019-11-25 15:49</time>
         
     </div>
     <div class="article-meta">
@@ -390,11 +402,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是我的第一篇博客文章,主要是记录如何使用hexo+github搭建个人的博客网站;</p>
-<p>以下是一些操作步骤:</p>
+        <p>这是我的第一篇博客文章,主要是记录如何使用hexo+github搭建个人的博客网站;<br>以下是一些操作步骤:</p>
 <ol>
-<li>准备<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1>输入代码时，核对准确，最好切换成英文输入法；<br>将文中的 “用户名” 和 “邮箱” 替换为自己的 GitHub 账户名和绑定的邮箱；<br>统一使用 Git Bash 进行操作（支持 Win、Mac）；<br>小白请严格按步骤进行，不要跳！<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1>Hexo 基于 Node.js，搭建过程中还需要使用 npm（Node.js 已带） 和 git，因此先搭建本地操作环境，安装 Node.js 和 Git。</li>
+<li>准备</li>
 </ol>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>输入代码时，核对准确，最好切换成英文输入法；<br>将文中的 “用户名” 和 “邮箱” 替换为自己的 GitHub 账户名和绑定的邮箱；<br>统一使用 Git Bash 进行操作（支持 Win、Mac）；<br>小白请严格按步骤进行，不要跳！</p>
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>Hexo 基于 Node.js，搭建过程中还需要使用 npm（Node.js 已带） 和 git，因此先搭建本地操作环境，安装 Node.js 和 Git。</p>
 <p>Node.js：<a href="https://nodejs.org/zh-cn" target="_blank" rel="noopener">https://nodejs.org/zh-cn</a><br>Git：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a><br>下载 Node.js 和 Git 程序并安装，一路点 “下一步” 按默认配置完成安装。</p>
 <p>安装完成后，Win+R 输入 cmd 并打开，依次输入 node -v、npm -v 和 git –version 并回车，如下图出现程序版本号即可。</p>
 <ol start="2">
@@ -424,10 +437,8 @@
 <li>部署 Hexo 到 GitHub Pages<br>本地博客测试成功后，就是上传到 GitHub 进行部署，使其能够在网络上访问。</li>
 </ol>
 <p>首先安装 hexo-deployer-git：</p>
-<p>npm install hexo-deployer-git –save<br>然后修改 _config.yml 文件末尾的 Deployment 部分，修改成如下：<br>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:用户名/用户名.github.io.git<br>  branch: master<br>完成后运行 hexo d 将网站上传部署到 GitHub Pages。<br>完成！这时访问我们的 GitHub 域名 https://用户名.github.io 就可以看到 Hexo 网站了。</p>
-<ol start="7">
-<li>开始使用<h1 id="7-1-发布文章"><a href="#7-1-发布文章" class="headerlink" title="7.1 发布文章"></a>7.1 发布文章</h1>进入博客所在目录，右键打开 Git Bash Here，创建博文：</li>
-</ol>
+<p>npm install hexo-deployer-git –save<br>然后修改 _config.yml 文件末尾的 Deployment 部分，修改成如下：<br>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:用户名/用户名.github.io.git<br>  branch: master<br>完成后运行 hexo d 将网站上传部署到 GitHub Pages。<br>完成！这时访问我们的 GitHub 域名 https://用户名.github.io 就可以看到 Hexo 网站了。<br>7. 开始使用</p>
+<h1 id="7-1-发布文章"><a href="#7-1-发布文章" class="headerlink" title="7.1 发布文章"></a>7.1 发布文章</h1><p>进入博客所在目录，右键打开 Git Bash Here，创建博文：</p>
 <p>hexo new “My New Post”<br>然后 source 文件夹中会出现一个 My New Post.md 文件，就可以使用 Markdown 编辑器在该文件中撰写文章了。</p>
 <p>写完后运行下面代码将文章渲染并部署到 GitHub Pages 上完成发布。以后每次发布文章都是这两条命令。</p>
 <p>hexo g   # 生成页面<br>hexo d   # 部署发布<br>也可以不使用命令自己创建 .md 文件，只需在文件开头手动加入如下格式 Front-matter 即可，写完后运行 hexo g 和 hexo d 发布。</p>
@@ -464,7 +475,7 @@
     
     <p><span class="copy-title">本文作者:</span><a  title="John Doe">John Doe</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-25, 15:49:35</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-26, 15:26:42</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-27, 17:15:42</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/25/Hexo+gitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="Hexo+gitHub搭建个人博客">http://yoursite.com/2019/11/25/Hexo+gitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -527,7 +538,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#hexo','#个人博客','#学习感触','#Linux基本操作命令','#NIFI','#NIFI集群部署文档','#ETL工具','#大数据','#学习笔记','#CDH','#HDP','#区域行政编码','#各省市行政编码','#编码',],
+            'data': ['#hexo','#个人博客','#学习感触','#Linux基本操作命令','#NIFI','#HDFS','#NIFI集群部署文档','#ETL工具','#大数据','#学习笔记','#CDH','#HDP','#区域行政编码','#各省市行政编码','#编码',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

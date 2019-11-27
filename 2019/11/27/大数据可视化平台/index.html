@@ -127,7 +127,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    <li><div class="all active">全部文章<small>(6)</small></div></li>
     
         
             
@@ -147,7 +147,7 @@
     
         
             
-            <li><div data-rel="NIFI">NIFI<small>(1)</small></div>
+            <li><div data-rel="NIFI">NIFI<small>(2)</small></div>
                 
             </li>
             
@@ -176,7 +176,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -228,6 +228,10 @@
     
     <li class="article-tag-list-item">
         <a class="color5">NIFI</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">HDFS</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -289,19 +293,19 @@
         </a>
         
         <a  class="NIFI "
+           href="/2019/11/27/NIFI%E8%BF%9E%E6%8E%A5HDFS/"
+           data-tag="NIFI,HDFS"
+           data-author="" >
+            <span class="post-title" title="NIFI连接HDFS">NIFI连接HDFS</span>
+            <span class="post-date" title="2019-11-27 15:23:32">2019/11/27</span>
+        </a>
+        
+        <a  class="NIFI "
            href="/2019/11/25/NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"
            data-tag="NIFI,NIFI集群部署文档,ETL工具"
            data-author="" >
             <span class="post-title" title="NIFI集群部署">NIFI集群部署</span>
             <span class="post-date" title="2019-11-25 16:08:25">2019/11/25</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2019/11/26/%E5%90%84%E7%9C%81%E5%B8%82%E5%8C%BA%E5%9F%9F%E8%A1%8C%E6%94%BF%E7%BC%96%E7%A0%81/"
-           data-tag="区域行政编码,各省市行政编码,编码"
-           data-author="" >
-            <span class="post-title" title="各省市区域行政编码">各省市区域行政编码</span>
-            <span class="post-date" title="2019-11-26 16:49:44">2019/11/26</span>
         </a>
         
         <a  class="大数据 "
@@ -310,6 +314,14 @@
            data-author="" >
             <span class="post-title" title="大数据可视化平台">大数据可视化平台</span>
             <span class="post-date" title="2019-11-27 09:05:34">2019/11/27</span>
+        </a>
+        
+        <a  class="工具 "
+           href="/2019/11/26/%E5%90%84%E7%9C%81%E5%B8%82%E5%8C%BA%E5%9F%9F%E8%A1%8C%E6%94%BF%E7%BC%96%E7%A0%81/"
+           data-tag="区域行政编码,各省市行政编码,编码"
+           data-author="" >
+            <span class="post-title" title="各省市区域行政编码">各省市区域行政编码</span>
+            <span class="post-date" title="2019-11-26 16:49:44">2019/11/26</span>
         </a>
         
     </nav>
@@ -354,7 +366,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-27 09:30:50'>2019-11-27 09:05</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-27 16:52:47'>2019-11-27 09:05</time>
         
     </div>
     <div class="article-meta">
@@ -393,13 +405,28 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>目前接触的大数据平台主要分为三种:开源的HDP以及CDH,和企业级的大数据平台华为的fusioninsight HD版本</p>
-<h1 id="HDP与CDH"><a href="#HDP与CDH" class="headerlink" title="HDP与CDH"></a>HDP与CDH</h1><h2 id="一、Hadoop版本"><a href="#一、Hadoop版本" class="headerlink" title="一、Hadoop版本"></a>一、Hadoop版本</h2><pre><code>Hadoop发行版本非常多,Hortonworks版本（Hortonworks Data Platform，简称“HDP”），Cloudera版本（Cloudera Distribution Hadoop，简称“CDH”），还有其他的版本，目前中国公司用CDH版本较多</code></pre><h2 id="二、HDP与CDH对比"><a href="#二、HDP与CDH对比" class="headerlink" title="二、HDP与CDH对比"></a>二、HDP与CDH对比</h2><pre><code>&gt; 1. HDP和CDH是开源的。Hortonworks的工程师是社区的主要贡献者，Cloudera的发行版本也是比较清晰的。
+<h1 id="HDP与CDH"><a href="#HDP与CDH" class="headerlink" title="HDP与CDH"></a>HDP与CDH</h1><h2 id="一、Hadoop版本"><a href="#一、Hadoop版本" class="headerlink" title="一、Hadoop版本"></a>一、Hadoop版本</h2><p>Hadoop发行版本非常多,Hortonworks版本（Hortonworks Data Platform，简称“HDP”），Cloudera版本（Cloudera Distribution Hadoop，简称“CDH”），还有其他的版本，目前中国公司用CDH版本较多</p>
+<h2 id="二、HDP与CDH对比"><a href="#二、HDP与CDH对比" class="headerlink" title="二、HDP与CDH对比"></a>二、HDP与CDH对比</h2><blockquote>
+<ul>
+<li><ol>
+<li>HDP和CDH是开源的。Hortonworks的工程师是社区的主要贡献者，Cloudera的发行版本也是比较清晰的。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>HDP使用开源工具Ambari安装，CDH使用Cloudera Manager工具安装</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>支持的组件，HDP基本上支持所有的开源大数据组件，CDH也基本上支持所有的开源大数据组件。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>代码包依赖，如果是HDP平台，编写代码直接依赖hadoop版本即可，如果是CDH平台，编写代码要依赖cdh的版本，否则运行不成功，这是坑啊。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
 
-&gt; 2. HDP使用开源工具Ambari安装，CDH使用Cloudera Manager工具安装
-
-&gt; 3. 支持的组件，HDP基本上支持所有的开源大数据组件，CDH也基本上支持所有的开源大数据组件。
-
-&gt; 4. 代码包依赖，如果是HDP平台，编写代码直接依赖hadoop版本即可，如果是CDH平台，编写代码要依赖cdh的版本，否则运行不成功，这是坑啊。</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2285147416@qq.com </span>
     </div>
@@ -416,7 +443,7 @@
     
     <p><span class="copy-title">本文作者:</span><a  title="John Doe">John Doe</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-27, 09:05:34</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-27, 09:30:50</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-27, 16:52:47</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/27/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B9%B3%E5%8F%B0/" title="大数据可视化平台">http://yoursite.com/2019/11/27/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B9%B3%E5%8F%B0/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -479,7 +506,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#hexo','#个人博客','#学习感触','#Linux基本操作命令','#NIFI','#NIFI集群部署文档','#ETL工具','#大数据','#学习笔记','#CDH','#HDP','#区域行政编码','#各省市行政编码','#编码',],
+            'data': ['#hexo','#个人博客','#学习感触','#Linux基本操作命令','#NIFI','#HDFS','#NIFI集群部署文档','#ETL工具','#大数据','#学习笔记','#CDH','#HDP','#区域行政编码','#各省市行政编码','#编码',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

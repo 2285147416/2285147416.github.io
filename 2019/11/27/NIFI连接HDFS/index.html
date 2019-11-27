@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>文章分类 | zyh的专属博客</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="文章分类 | zyh的专属博客">
+  <title>NIFI连接HDFS | zyh的专属博客</title>
+  <meta name="keywords" content=" NIFI , HDFS ">
+  <meta name="description" content="NIFI连接HDFS | zyh的专属博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="这是一个记录着成长轨迹的个人博客">
 <meta property="og:type" content="website">
@@ -336,19 +336,33 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-NIFI连接HDFS" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">文章分类</h1>
+        <h1 class="article-title">NIFI连接HDFS</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            
+                <a  data-rel="NIFI">NIFI</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color5">NIFI</a>
+            
+            <a class="color5">HDFS</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-26 15:05:37'>2019-11-26 15:04</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-27 16:36:53'>2019-11-27 15:23</time>
         
     </div>
     <div class="article-meta">
@@ -370,7 +384,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NiFi连接HDFS"><span class="toc-text">NiFi连接HDFS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作场景"><span class="toc-text">操作场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前提条件"><span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PutHDFS-操作步骤"><span class="toc-text">PutHDFS 操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整个过程的流程图所示："><span class="toc-text">整个过程的流程图所示：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体配置："><span class="toc-text">具体配置：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GetHDFS-操作步骤"><span class="toc-text">GetHDFS 操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整个过程的流程如图所示："><span class="toc-text">整个过程的流程如图所示：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理器GetHDFS配置如下"><span class="toc-text">处理器GetHDFS配置如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体配置：-1"><span class="toc-text">具体配置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理器PutFile配置如下"><span class="toc-text">处理器PutFile配置如下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ListHDFS-amp-FetchHDFS-操作步骤"><span class="toc-text">ListHDFS &amp; FetchHDFS 操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整个过程的流程如图所示：-1"><span class="toc-text">整个过程的流程如图所示：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体配置为："><span class="toc-text">具体配置为：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体配置为：-1"><span class="toc-text">具体配置为：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体配置为：-2"><span class="toc-text">具体配置为：</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -386,7 +400,95 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>以下是关于NIFI 1.7.1连接HDFS的操作步骤</p>
+<h1 id="NiFi连接HDFS"><a href="#NiFi连接HDFS" class="headerlink" title="NiFi连接HDFS"></a>NiFi连接HDFS</h1><h2 id="操作场景"><a href="#操作场景" class="headerlink" title="操作场景"></a>操作场景</h2><p>NiFi中配置HDFS相关处理器，对接HDFS</p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><blockquote>
+<ul>
+<li>已经完成NiFi 1.7.1的安装</li>
+<li>已完成FusionInsight HD和客户端的安装，包含HDFS组件</li>
+<li>已完成 NiFi Kerberos认证配置</li>
+</ul>
+</blockquote>
+<h2 id="PutHDFS-操作步骤"><a href="#PutHDFS-操作步骤" class="headerlink" title="PutHDFS 操作步骤"></a>PutHDFS 操作步骤</h2><blockquote>
+<p>将FusionInsight HD客户端中关于HDFS的配置文件hdfs-site.xml，core-site.xml导入路径/usr/nifi/nifi-1.7.1/conf<br>修改hdfs-site.xml内容，删除如下配置项</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.client.failover.proxy.provider.hacluster&lt;/name&gt;</span><br><span class="line">&lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.BlackListingFailoverProxyProvider&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改core-site.xml内容，修改如下配置项中hacluster改为节点ip加端口号</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">&lt;value&gt;hdfs://172.21.3.102:25000&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="整个过程的流程图所示："><a href="#整个过程的流程图所示：" class="headerlink" title="整个过程的流程图所示："></a>整个过程的流程图所示：</h3><p><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs1.jpg" alt="图片1"><br>处理器GetFile的配置如下：<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs2.png" alt="图片2"><br>具体配置：</p>
+<blockquote>
+<p>1: /home/dataset<br>处理器PutHDFS配置如下:<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs3.png" alt="图片3"><br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs4.png" alt="图片4"></p>
+</blockquote>
+<h3 id="具体配置："><a href="#具体配置：" class="headerlink" title="具体配置："></a>具体配置：</h3><blockquote>
+<ul>
+<li>1: /usr/nifi/nifi-1.7.1/conf/hdfs-site.xml,/usr/nifi/nifi-1.7.1/conf/core-site.xml</li>
+<li>2: 选择NiFi配置Kerberos认证这一节中创建的 KeytabCredentialsService</li>
+<li>3: /tmp/nifitest<br>两个处理器的连接配置如下：<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs5.png" alt="图片5"></li>
+<li>测试前将测试文件nifiHDFS.csv放入路径/home/dataset<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs6.png" alt="图片6"><br>文件内容如下：<br>1;EcitQU<br>2;Hyy6RC<br>3;zju1jR<br>4;R9fex9<br>5;EU2mVq<br>测试后<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs7.png" alt="图片7"><br>登录集群HDFS文件系统查看测试结果<br>hdfs dfs -cat /tmp/nifitest/nifiHDFS.csv<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs8.png" alt="图片8"></li>
+</ul>
+</blockquote>
+<h2 id="GetHDFS-操作步骤"><a href="#GetHDFS-操作步骤" class="headerlink" title="GetHDFS 操作步骤"></a>GetHDFS 操作步骤</h2><h3 id="整个过程的流程如图所示："><a href="#整个过程的流程如图所示：" class="headerlink" title="整个过程的流程如图所示："></a>整个过程的流程如图所示：</h3><p><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs9.png" alt="图片9"></p>
+<h3 id="处理器GetHDFS配置如下"><a href="#处理器GetHDFS配置如下" class="headerlink" title="处理器GetHDFS配置如下"></a>处理器GetHDFS配置如下</h3><p><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs10.png" alt="图片10"></p>
+<h3 id="具体配置：-1"><a href="#具体配置：-1" class="headerlink" title="具体配置："></a>具体配置：</h3><blockquote>
+<ul>
+<li>1: /usr/nifi/nifi-1.7.1/conf/hdfs-site.xml,/usr/nifi/nifi-1.7.1/conf/core-site.xml</li>
+<li>2: 选择NiFi配置Kerberos认证这一节中创建的 KeytabCredentialsService</li>
+<li>3: /tmp/nifitest/HDFS        </li>
+</ul>
+</blockquote>
+<h3 id="处理器PutFile配置如下"><a href="#处理器PutFile配置如下" class="headerlink" title="处理器PutFile配置如下"></a>处理器PutFile配置如下</h3><p><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs11.png" alt="图片11"><br>具体配置：<br>1: /home/dataset/HDFS<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs12.png" alt="图片12"><br>测试前将测试文件nifiHDFS.csv放到HDFS文件系统的/tmp/nifitest/HDFS路径下<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs13.png" alt="图片13"><br>测试后<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs14.png" alt="图片14"><br>登录安装 FusionInsight HD客户端主机路径/home/dataset/HDFS查看结果<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs15.png" alt="图片15"></p>
+<h2 id="ListHDFS-amp-FetchHDFS-操作步骤"><a href="#ListHDFS-amp-FetchHDFS-操作步骤" class="headerlink" title="ListHDFS &amp; FetchHDFS 操作步骤"></a>ListHDFS &amp; FetchHDFS 操作步骤</h2><h3 id="整个过程的流程如图所示：-1"><a href="#整个过程的流程如图所示：-1" class="headerlink" title="整个过程的流程如图所示："></a>整个过程的流程如图所示：</h3><p><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs16.png" alt="图片16"><br>处理器ListHDFS配置如下：<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs17.png" alt="图片17"></p>
+<h3 id="具体配置为："><a href="#具体配置为：" class="headerlink" title="具体配置为："></a>具体配置为：</h3><blockquote>
+<ul>
+<li><ol>
+<li>/usr/nifi/nifi-1.7.1/conf/hdfs-site.xml,/usr/nifi/nifi-1.7.1/conf/core-site.xml</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>KeytabCredentialsService</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>/tmp/nifitest<br>处理器RouteOnAttribute具体配置如下：<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs18.png" alt="图片18"><br>注意：需要点击加号图标增加一条配置，Property 配置为requiredfilenames，Value 配置为</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;filename:matches(&apos;sanguo.*&apos;)&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="具体配置为：-1"><a href="#具体配置为：-1" class="headerlink" title="具体配置为："></a>具体配置为：</h3><blockquote>
+<ul>
+<li><ol>
+<li>Route to Property name</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>requiredfilenames</li>
+</ol>
+</li>
+<li><ol start="3">
+<li></li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;filename:matches(&apos;sanguo.*&apos;)&#125;</span><br></pre></td></tr></table></figure>
+<p>处理器RouteOnAttribute和上、下处理器FetchHDFS的连接配置分别对应为requiredfilenames和unmatched，如图：<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs19.png" alt="图片19"><br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs20.png" alt="图片20"><br>两个处理器FetchHDFS的配置如下：<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs21.png" alt="图片21"></p>
+<h3 id="具体配置为：-2"><a href="#具体配置为：-2" class="headerlink" title="具体配置为："></a>具体配置为：</h3><blockquote>
+<ul>
+<li><ol>
+<li>/usr/nifi/nifi-1.7.1/conf/hdfs-site.xml,/usr/nifi/nifi-1.7.1/conf/core-site.xml</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>KeytabCredentialsService<br>上、下处理器PutFile配置分别如下：<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs22.png" alt="图片22"><br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs23.png" alt="图片23"><br>测试前，执行命令hdfs dfs -ls /tmp/nifitest登录集群HDFS文件系统/tmp/nifitest查看文件<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs24.png" alt="图片24"><br>测试后<br><img src="https://raw.githubusercontent.com/2285147416/MarkdownPhoto/master/hdfs25.png" alt="图片25"><br>登录FusionInsight HD客户端主机路径/home/dataset/HDFS/matchedFiles和/home/dataset/HDFS/unmatchedFiles分别查看结果</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2285147416@qq.com </span>
     </div>
@@ -397,6 +499,18 @@
     <a  class="dashang" onclick="dashangToggle()">赏</a>
 </p>
 
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>NIFI连接HDFS</p>
+    
+    <p><span class="copy-title">本文作者:</span><a  title="John Doe">John Doe</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-27, 15:23:32</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-27, 16:36:53</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/27/NIFI%E8%BF%9E%E6%8E%A5HDFS/" title="NIFI连接HDFS">http://yoursite.com/2019/11/27/NIFI%E8%BF%9E%E6%8E%A5HDFS/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
 
 
 

@@ -127,7 +127,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(5)</small></div></li>
+    <li><div class="all active">全部文章<small>(6)</small></div></li>
     
         
             
@@ -147,7 +147,7 @@
     
         
             
-            <li><div data-rel="NIFI">NIFI<small>(1)</small></div>
+            <li><div data-rel="NIFI">NIFI<small>(2)</small></div>
                 
             </li>
             
@@ -176,7 +176,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -228,6 +228,10 @@
     
     <li class="article-tag-list-item">
         <a class="color5">NIFI</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">HDFS</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -289,19 +293,19 @@
         </a>
         
         <a  class="NIFI "
+           href="/2019/11/27/NIFI%E8%BF%9E%E6%8E%A5HDFS/"
+           data-tag="NIFI,HDFS"
+           data-author="" >
+            <span class="post-title" title="NIFI连接HDFS">NIFI连接HDFS</span>
+            <span class="post-date" title="2019-11-27 15:23:32">2019/11/27</span>
+        </a>
+        
+        <a  class="NIFI "
            href="/2019/11/25/NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"
            data-tag="NIFI,NIFI集群部署文档,ETL工具"
            data-author="" >
             <span class="post-title" title="NIFI集群部署">NIFI集群部署</span>
             <span class="post-date" title="2019-11-25 16:08:25">2019/11/25</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2019/11/26/%E5%90%84%E7%9C%81%E5%B8%82%E5%8C%BA%E5%9F%9F%E8%A1%8C%E6%94%BF%E7%BC%96%E7%A0%81/"
-           data-tag="区域行政编码,各省市行政编码,编码"
-           data-author="" >
-            <span class="post-title" title="各省市区域行政编码">各省市区域行政编码</span>
-            <span class="post-date" title="2019-11-26 16:49:44">2019/11/26</span>
         </a>
         
         <a  class="大数据 "
@@ -310,6 +314,14 @@
            data-author="" >
             <span class="post-title" title="大数据可视化平台">大数据可视化平台</span>
             <span class="post-date" title="2019-11-27 09:05:34">2019/11/27</span>
+        </a>
+        
+        <a  class="工具 "
+           href="/2019/11/26/%E5%90%84%E7%9C%81%E5%B8%82%E5%8C%BA%E5%9F%9F%E8%A1%8C%E6%94%BF%E7%BC%96%E7%A0%81/"
+           data-tag="区域行政编码,各省市行政编码,编码"
+           data-author="" >
+            <span class="post-title" title="各省市区域行政编码">各省市区域行政编码</span>
+            <span class="post-date" title="2019-11-26 16:49:44">2019/11/26</span>
         </a>
         
     </nav>
@@ -352,7 +364,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-26 15:18:12'>2019-11-25 16:08</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-27 16:57:52'>2019-11-25 16:08</time>
         
     </div>
     <div class="article-meta">
@@ -374,7 +386,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NIFI版本：1-6-0"><span class="toc-text">NIFI版本：1.6.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概念："><span class="toc-text">概念：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STEP-ONE-软件包准备"><span class="toc-text">STEP ONE 软件包准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集群状态管理"><span class="toc-text">集群状态管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。"><span class="toc-text">修改$NIFI_HOME/conf/state-management.xml文件，找到并且id为zk-provider的标签。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集群节点属性配置"><span class="toc-text">集群节点属性配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看集群情况，右上角菜单，点开，点击菜单“Cluster”"><span class="toc-text">查看集群情况，右上角菜单，点开，点击菜单“Cluster”:</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NIFI版本：1-6-0"><span class="toc-text">NIFI版本：1.6.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#概念："><span class="toc-text">概念：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#STEP-ONE-软件包准备"><span class="toc-text">STEP ONE 软件包准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STEP-TWO-操作系统配置"><span class="toc-text">STEP TWO 操作系统配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STEP-THREE-NIFI配置"><span class="toc-text">STEP THREE  NIFI配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STEP-FOUR-华为大数据平台对接"><span class="toc-text">STEP FOUR 华为大数据平台对接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STEP-FIVE-集群配置"><span class="toc-text">STEP FIVE 集群配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集群状态管理"><span class="toc-text">集群状态管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。"><span class="toc-text">修改$NIFI_HOME/conf/state-management.xml文件，找到并且id为zk-provider的标签。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集群节点属性配置"><span class="toc-text">集群节点属性配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#STEP-SIX-启动各个节点"><span class="toc-text">STEP SIX 启动各个节点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看集群情况，右上角菜单，点开，点击菜单“Cluster”"><span class="toc-text">查看集群情况，右上角菜单，点开，点击菜单“Cluster”</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -393,25 +405,49 @@
         <h1 id="NIFI版本：1-6-0"><a href="#NIFI版本：1-6-0" class="headerlink" title="NIFI版本：1.6.0"></a>NIFI版本：1.6.0</h1><p>部署路径: /opt/lab/nifi-1.6.0</p>
 <p>集群架构如下：</p>
 <h1 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h1><p>协调节点：coordinator node, 所有节点往该节点发送心跳信息<br>主节点：primary node, 主要用于跑一些独立流程<br>独立流程：isolated processors, 有些流程需要独立跑，不要在集群中运行，例如getsftp流程，该流程需要从FTP服务器上获取文件信息，如果多个流程同时运行则会影响文件的获取一致性。</p>
-<h1 id="STEP-ONE-软件包准备"><a href="#STEP-ONE-软件包准备" class="headerlink" title="STEP ONE 软件包准备"></a>STEP ONE 软件包准备</h1><p>NIFI 1.6.0  软件包大小：1.18GB</p>
-<p>STEP TWO 操作系统配置<br>最佳实践配置，详细可参考官网：<br><a href="http://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#configuration-best-practices" target="_blank" rel="noopener">http://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#configuration-best-practices</a></p>
-<p>STEP THREE  NIFI配置<br>修改NIFI JVM内存：修改${NIFI_HOME}/conf/bootstrap.conf文件，根据服务器的内存大小适当调整JVM内存大小，如果允许配置该内存大小为32g.</p>
-<p>STEP FOUR 华为大数据平台对接<br>登陆华为大数据平台，进入系统设置-》配置-》用户管理=》添加用户，如下图所示：注意，用户类型选择“机机”。  关于用户的配置和原理请参考华为大数据平台文档《FusionInsight HD V100R002C60U1004.chm》。</p>
-<p>下载用户秘钥信息，并将秘钥文件解压到安装NIFI的服务器上指定路径下${NIFI_HOME}/krb</p>
-<p>配置NIFI，修改${NIFI_HOME}/conf/nifi.properties文件。</p>
-<p>配置NIF启动参数，使得可以连接zookeeper<br>在${NIFI_HOME}/conf目录下创建jaas.conf文本内容如下：</p>
-<p>修改${NIFI_HOME}/conf/bootstrap.conf文件</p>
-<p>确认NIFI中的zookekper包版本，查看华为大数据平台本身应用的zookeeper版本，如果不一致，则将华为大数据平台使用的zookeeper jar包覆盖nifi中的所有zookeeper jar包。</p>
-<p>STEP FIVE 集群配置<br>当前示例部署nifi集群，集群节点数为3个，其主机名分别为dn1,dn2,dn3。下面我们以dn1服务节点上nifi配置为例，其他节点与之一致，只是涉及到主机名称的需要同步修改。<br>我们定义nifi安装包根目录地址为$NIFI_HOME。例如当前dn1节点中<br>$NIFI_HOME=/opt/lab/nifi-1.6.0<br>Zookeeper服务集群配置<br>Nifi集群的协调配置管理需要第三方协调配置服务，即zookeeper集群。 可以使用环境中已经搭建好的zookeeper服务，NIFI本身也集成了zookeeper服务，我们采用NIFI自身启动的Zookeeper。三个NIFI节点集群，同时也相应搭建三个节点的Zookeeper服务集群。为此需要修改一下配置：<br>修改$NIFI_HOME/conf/nifi.properties<br>nifi.state.management.embedded.zookeeper.start=true  //启用nifi中的zookeeper服务<br>nifi.state.management.embedded.zookeeper.properties=./conf/zookeeper.properties //zookeeperf服务集群配置信息，即集群的配置在zookeeper.properties中定义</p>
+<h2 id="STEP-ONE-软件包准备"><a href="#STEP-ONE-软件包准备" class="headerlink" title="STEP ONE 软件包准备"></a>STEP ONE 软件包准备</h2><p>NIFI 1.6.0  软件包大小：1.18GB</p>
+<h2 id="STEP-TWO-操作系统配置"><a href="#STEP-TWO-操作系统配置" class="headerlink" title="STEP TWO 操作系统配置"></a>STEP TWO 操作系统配置</h2><p>最佳实践配置，详细可参考官网：<br><a href="http://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#configuration-best-practices" target="_blank" rel="noopener">http://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#configuration-best-practices</a></p>
+<h2 id="STEP-THREE-NIFI配置"><a href="#STEP-THREE-NIFI配置" class="headerlink" title="STEP THREE  NIFI配置"></a>STEP THREE  NIFI配置</h2><blockquote>
+<ul>
+<li>修改NIFI JVM内存：修改<code>${NIFI_HOME}/conf/bootstrap.conf</code>文件，根据服务器的内存大小适当调整JVM内存大小，如果允许配置该内存大小为32g.</li>
+</ul>
+</blockquote>
+<h2 id="STEP-FOUR-华为大数据平台对接"><a href="#STEP-FOUR-华为大数据平台对接" class="headerlink" title="STEP FOUR 华为大数据平台对接"></a>STEP FOUR 华为大数据平台对接</h2><blockquote>
+<ul>
+<li>登陆华为大数据平台，进入系统设置-》配置-》用户管理=》添加用户，如下图所示：注意，用户类型选择“机机”。  </li>
+<li>关于用户的配置和原理请参考华为大数据平台文档《FusionInsight HD V100R002C60U1004.chm》。</li>
+<li>下载用户秘钥信息，并将秘钥文件解压到安装NIFI的服务器上指定路径下${NIFI_HOME}/krb</li>
+<li>配置NIFI，修改${NIFI_HOME}/conf/nifi.properties文件。</li>
+<li>配置NIF启动参数，使得可以连接zookeeper</li>
+<li>在${NIFI_HOME}/conf目录下创建jaas.conf文本内容如下：</li>
+<li>修改${NIFI_HOME}/conf/bootstrap.conf文件</li>
+<li>确认NIFI中的zookekper包版本，查看华为大数据平台本身应用的zookeeper版本，如果不一致，则将华为大数据平台使用的zookeeper jar包覆盖nifi中的所有zookeeper jar包。</li>
+</ul>
+</blockquote>
+<h2 id="STEP-FIVE-集群配置"><a href="#STEP-FIVE-集群配置" class="headerlink" title="STEP FIVE 集群配置"></a>STEP FIVE 集群配置</h2><blockquote>
+<ul>
+<li>当前示例部署nifi集群，集群节点数为3个，其主机名分别为dn1,dn2,dn3。下面我们以dn1服务节点上nifi配置为例，其他节点与之一致，只是涉及到主机名称的需要同步修改。</li>
+<li>我们定义nifi安装包根目录地址为$NIFI_HOME。例如当前dn1节点中<br>$NIFI_HOME=/opt/lab/nifi-1.6.0</li>
+<li>Zookeeper服务集群配置</li>
+<li>Nifi集群的协调配置管理需要第三方协调配置服务，即zookeeper集群。 可以使用环境中已经搭建好的zookeeper服务，NIFI本身也集成了zookeeper服务，我们采用NIFI自身启动的Zookeeper。三个NIFI节点集群，同时也相应搭建三个节点的Zookeeper服务集群。为此需要修改一下配置：</li>
+<li>修改$NIFI_HOME/conf/nifi.properties</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nifi.state.management.embedded.zookeeper.start=true  //启用nifi中的zookeeper服务</span><br><span class="line">nifi.state.management.embedded.zookeeper.properties=./conf/zookeeper.properties //zookeeperf服务集群配置信息，即集群的配置在zookeeper.properties中定义</span><br></pre></td></tr></table></figure>
 <p>修改$NIFI_HOME/conf/zookeeper.properties,配置如下</p>
-<p>配置zookeeper数据存储目录，如上图中可以看到zookeeper服务节点数据存储目录是./state/zookeeper<br>执行以下命令：<br>cd $NIFI_HOME      进入nifi根目录<br>mkdir state          创建state目录<br>mkdir state/zookeeper   创建zookeeper目录<br>echo 1 &gt; state/zookeeper/myid    在zookeeper目录下创建文本myid并写入1.</p>
+<p>配置zookeeper数据存储目录，如上图中可以看到zookeeper服务节点数据存储目录是./state/zookeeper<br>执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd $NIFI_HOME      进入nifi根目录</span><br><span class="line">mkdir state          创建state目录</span><br><span class="line">mkdir state/zookeeper   创建zookeeper目录</span><br><span class="line">echo 1 &gt; state/zookeeper/myid    在zookeeper目录下创建文本myid并写入1.</span><br></pre></td></tr></table></figure>
+
 <p>注意： 最后一步，我们在dn1节点上写入1，在dn2节点上写入2，在dn3节点上写入3，正好对应了zookeeper.properties中的server.1,server.2,server.3的命名配置。</p>
-<h1 id="集群状态管理"><a href="#集群状态管理" class="headerlink" title="集群状态管理"></a>集群状态管理</h1><p>我们知道nifi中所有数据流的处理会涉及到状态保存，例如从FTP取文件，会保存文件的最新时间，以便于下次取数据的时候取最新时间下的文件信息。默认单点情况下数据流的状态都保存在服务节点本地，但是在启用集群后，需要将这些状态信息保存在第三方公共服务区，这样以便集群中所有服务节点可以获取到并且同步状态信息。而这个第三方服务一般是采用zookeeper进行管理。为此需要实现以下几点配置：<br>nifi.state.management.configuration.file=./conf/state-management.xml   状态管理配置文件 采用默认即可<br>nifi.state.management.provide.cluster=zk-provider   状态管理采用zk-provider方式</p>
-<h1 id="修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。"><a href="#修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。" class="headerlink" title="修改$NIFI_HOME/conf/state-management.xml文件，找到并且id为zk-provider的标签。"></a>修改$NIFI_HOME/conf/state-management.xml文件，找到<cluster-provider>并且id为zk-provider的标签。</h1><p>修改Connect String 为  dn1:2181,dn2:2181,dn3:2181<br>修改Root Node 为  /nifi</p>
+<h1 id="集群状态管理"><a href="#集群状态管理" class="headerlink" title="集群状态管理"></a>集群状态管理</h1><p>我们知道nifi中所有数据流的处理会涉及到状态保存，例如从FTP取文件，会保存文件的最新时间，以便于下次取数据的时候取最新时间下的文件信息。默认单点情况下数据流的状态都保存在服务节点本地，但是在启用集群后，需要将这些状态信息保存在第三方公共服务区，这样以便集群中所有服务节点可以获取到并且同步状态信息。而这个第三方服务一般是采用zookeeper进行管理。为此需要实现以下几点配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nifi.state.management.configuration.file=./conf/state-management.xml   状态管理配置文件 采用默认即可nifi.state.management.provide.cluster=zk-provider   状态管理采用zk-provider方式</span><br></pre></td></tr></table></figure>
+
+<h1 id="修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。"><a href="#修改-NIFI-HOME-conf-state-management-xml文件，找到并且id为zk-provider的标签。" class="headerlink" title="修改$NIFI_HOME/conf/state-management.xml文件，找到并且id为zk-provider的标签。"></a>修改$NIFI_HOME/conf/state-management.xml文件，找到<cluster-provider>并且id为zk-provider的标签。</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">修改Connect String 为  dn1:2181,dn2:2181,dn3:2181</span><br><span class="line">修改Root Node 为  /nifi</span><br></pre></td></tr></table></figure>
 <h1 id="集群节点属性配置"><a href="#集群节点属性配置" class="headerlink" title="集群节点属性配置"></a>集群节点属性配置</h1><p>修$NIFI_HOME/conf/nifi.properties中以下配置：</p>
-<p>nifi.cluster.is.node=true<br>nifi.cluster.node.address=dn1<br>nifi.zookeeper.connect.string=dn1:2181,dn2:2181,dn3:2181<br>nifi.zookeeper.root.node=/nifi<br>nifi.remote.input.host=dn3<br>nifi.remote.input.socket.port=9998<br>Nifi.web.http.host=dn3</p>
-<p>STEP SIX 启动各个节点<br>在各个服务节点上，进入$NIFI_HOME目录，执行bin/nifi.sh start进行各个节点启动。<br>访问任意节点(以dn1节点为例): <a href="http://dn1:8080/nifi" target="_blank" rel="noopener">http://dn1:8080/nifi</a></p>
-<h1 id="查看集群情况，右上角菜单，点开，点击菜单“Cluster”"><a href="#查看集群情况，右上角菜单，点开，点击菜单“Cluster”" class="headerlink" title="查看集群情况，右上角菜单，点开，点击菜单“Cluster”:"></a>查看集群情况，右上角菜单，点开，点击菜单“Cluster”:</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nifi.cluster.is.node=true</span><br><span class="line">nifi.cluster.node.address=dn1</span><br><span class="line">nifi.zookeeper.connect.string=dn1:2181,dn2:2181,dn3:2181</span><br><span class="line">nifi.zookeeper.root.node=/nifi</span><br><span class="line">nifi.remote.input.host=dn3</span><br><span class="line">nifi.remote.input.socket.port=9998</span><br><span class="line">Nifi.web.http.host=dn3</span><br></pre></td></tr></table></figure>
+
+<h2 id="STEP-SIX-启动各个节点"><a href="#STEP-SIX-启动各个节点" class="headerlink" title="STEP SIX 启动各个节点"></a>STEP SIX 启动各个节点</h2><p>在各个服务节点上，进入$NIFI_HOME目录，执行bin/nifi.sh start进行各个节点启动。<br>访问任意节点(以dn1节点为例): <a href="http://dn1:8080/nifi" target="_blank" rel="noopener">http://dn1:8080/nifi</a></p>
+<h1 id="查看集群情况，右上角菜单，点开，点击菜单“Cluster”"><a href="#查看集群情况，右上角菜单，点开，点击菜单“Cluster”" class="headerlink" title="查看集群情况，右上角菜单，点开，点击菜单“Cluster”"></a>查看集群情况，右上角菜单，点开，点击菜单“Cluster”</h1>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 2285147416@qq.com </span>
     </div>
@@ -428,7 +464,7 @@
     
     <p><span class="copy-title">本文作者:</span><a  title="John Doe">John Doe</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-25, 16:08:25</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-26, 15:18:12</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-27, 16:57:52</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/25/NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/" title="NIFI集群部署">http://yoursite.com/2019/11/25/NIFI%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -491,7 +527,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#hexo','#个人博客','#学习感触','#Linux基本操作命令','#NIFI','#NIFI集群部署文档','#ETL工具','#大数据','#学习笔记','#CDH','#HDP','#区域行政编码','#各省市行政编码','#编码',],
+            'data': ['#hexo','#个人博客','#学习感触','#Linux基本操作命令','#NIFI','#HDFS','#NIFI集群部署文档','#ETL工具','#大数据','#学习笔记','#CDH','#HDP','#区域行政编码','#各省市行政编码','#编码',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
